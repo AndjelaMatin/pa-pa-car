@@ -2,7 +2,7 @@
   <div id="app">
     <nav id="nav" class="navbar navbar-expand-lg navbar-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="Home.vue">
+        <a class="navbar-brand" href="Home">
           <img
             src="@/assets/logo.png"
             alt=""
