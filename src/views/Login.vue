@@ -26,7 +26,7 @@
                 v-model="password"
               />
             </div>
-            <button type="submit" class="btn btn-block" id="button1">
+            <button class="btn btn-block" id="button1"  @click="login" type="button">
               Submit
             </button>
             <div class="form-footer">
@@ -49,11 +49,39 @@
   margin-bottom: 45px;
 }
 #button1 {
-  color: #631fd9;
+  color: #5f5c69;
   background-color: #D7BCFD;
   outline-color: #D7BCFD;
 }
 #link {
-  color: #631fd9;
+  color: #5f5c69;
 }
 </style>
+<script>
+import { auth, signInWithEmailAndPassword } from "@/firebase";
+export default {
+  name: "login",
+  data() {
+    return {
+      email: "",
+      username: "",
+      number: "",
+      password: "",
+    };
+  },
+  methods: {
+    login() {
+      signInWithEmailAndPassword(auth, this.email, this.password)
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+        });
+    },
+  },
+};
+</script>

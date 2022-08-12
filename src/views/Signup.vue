@@ -52,7 +52,7 @@
                 v-model="repeatpassword"
               />
             </div>
-            <button onsubmit="return false" class="btn btn-block" id="button1">
+            <button class="btn btn-block" id="button1" @click="sign" type="button">
               Submit
             </button>
             <div class="form-footer">
@@ -74,11 +74,47 @@
   margin-bottom: 45px;
 }
 #button1 {
-  color: #631fd9;
+  color: #5f5c69;
   background-color: #D7BCFD;
   outline-color: #D7BCFD;
 }
 #link {
-  color: #631fd9;
+  color: #5f5c69;
 }
 </style>
+<script>
+import { auth, createUserWithEmailAndPassword } from "@/firebase";
+export default {
+  name: "sign",
+  data() {
+    return {
+      email: "",
+      username: "",
+      phonenumber: "",
+      password: "",
+      repeatpassword: "",
+    };
+  },
+  methods: {
+    sign() {
+      if (this.password==this.repeatpassword) {
+       createUserWithEmailAndPassword(auth, this.email, this.password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          alert(errorMessage);
+          // ..
+        }); 
+      }
+      else {
+        this.password='';
+        this.repeatpassword='';
+       console.log('n')}
+
+    },
+  },
+};
+</script>
