@@ -52,7 +52,12 @@
                 v-model="repeatpassword"
               />
             </div>
-            <button class="btn btn-block" id="button1" @click="sign" type="button">
+            <button
+              class="btn btn-block"
+              id="button1"
+              @click="sign"
+              type="button"
+            >
               Submit
             </button>
             <div class="form-footer">
@@ -75,15 +80,16 @@
 }
 #button1 {
   color: #5f5c69;
-  background-color: #D7BCFD;
-  outline-color: #D7BCFD;
+  background-color: #d7bcfd;
+  outline-color: #d7bcfd;
 }
 #link {
   color: #5f5c69;
 }
 </style>
 <script>
-import { auth, createUserWithEmailAndPassword } from "@/firebase";
+import { getAuth, createUserWithEmailAndPassword } from "@/firebase";
+const auth = getAuth();
 export default {
   name: "sign",
   data() {
@@ -97,23 +103,21 @@ export default {
   },
   methods: {
     sign() {
-      if (this.password==this.repeatpassword) {
-       createUserWithEmailAndPassword(auth, this.email, this.password)
-        .then((userCredential) => {
-          const user = userCredential.user;
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          alert(errorMessage);
-          // ..
-        }); 
+      if (this.password == this.repeatpassword) {
+        createUserWithEmailAndPassword(auth, this.email, this.password)
+          .then((userCredential) => {
+            // Signd in
+            const user = userCredential.user;
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+          });
+      } else {
+        this.password = "";
+        this.repeatpassword = "";
+        alert("Different password in fields!");
       }
-      else {
-        this.password='';
-        this.repeatpassword='';
-       console.log('n')}
-
     },
   },
 };

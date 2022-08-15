@@ -23,30 +23,21 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarText">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li>
-              <div class="input-group mb-3">
-                <button
-                  class="btn dropdown-toggle"
-                  id="button1"
-                  type="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                  style="color:#fff"
-                >
-                  Log In/Sign Up
-                </button>
-                <ul class="dropdown-menu dropdown-menu-end">
-                  <li><a href="Login" style="color:#D7BCFD">Log In</a></li>
-                  <li><a href="Signup" style="color:#D7BCFD">Sign Up</a></li>
-                </ul>
-              </div>
+          <ul class="navbar-nav ms-auto mb-2 ">
+            <li class="nav-item" >
+              <router-link to="/login" class="nav-link">Login</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link to="/signup" class="nav-link">Sign Up</router-link>
+            </li>
+             <li class="nav-item">
+              <a class="nav-link" href="#" @click.prevent="logout()">Logout</a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
-    <router-view />
+    <router-view/>
   </div>
 </template>
 
@@ -61,18 +52,56 @@
 
 #nav {
   padding: 10px;
-  background-color: #D7BCFD;
+  background-color: #d7bcfd;
   a {
     color: #fff;
     &.router-link-exact-active {
-      color: #631fd9;
+      color: #5f5c69;
     }
   }
 }
 
-#button1 {
-  background-color: #D7BCFD;
-  outline-color: #D7BCFD;
+#button3 {
+  background-color: #d7bcfd;
+  outline-color: #d7bcfd;
 }
-
+.dropdown-menu {
+  --bs-dropdown-link-active-bg: #d7bcfd !important;
+}
 </style>
+<script>
+import store from '@/store';
+import { getAuth, onAuthStateChanged, signOut } from '@/firebase';
+import router from '@/router';
+const auth = getAuth();
+onAuthStateChanged(auth, (user) => {
+  const currentRoute=router.currentRoute;
+  console.log("PROVJERA*********");
+        if (user) {
+          //const uid = user.uid;
+          console.log("***",user.email);
+          store.currentUser = user.email;
+        } else {
+          console.log("***No user");
+          store.currentUser = null;
+        }
+      });
+export default {
+  name: "app",
+  data(){
+    return{
+      store,
+    };
+  },
+  methods: {
+    logout(){
+      signOut(auth).then(()=>{
+        //Sign-out successful.
+        this.$router.push({name:'login'});
+      }).catch((error)=>{
+        //An error happened.
+      });
+    },
+  },
+};
+</script>

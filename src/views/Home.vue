@@ -4,36 +4,25 @@
 </div>
 <div id="forma1">
 <form>
-  <div class="row g-2">
-  <div class="col-md-3">
-     <label class="form-label">Leaving from</label>
-    <input type="text" class="form-control" placeholder="From...">
-  </div>
-  <div class="col-md-3">
-     <label class="form-label">Going to</label>
-    <input type="text" class="form-control" placeholder="To...">
-  </div>
-  <div class="col-md-2">
-    <label class="form-label">Number of passengers</label>
-    <select class="form-select">
-      <option selected>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-      <option>6</option>
-      <option>7</option>
-      <option>8</option>
-    </select>
-  </div>
-  <div class="col-md-3">
-    <button class="btn btn-block" id="button2" type="button">
+  <div class="row g-1">
+  <div class="col-md-6">
+     <p>Pick the ride </p><a href="Rides" id="link">
+     <button class="btn btn-block" id="button2" type="button">
       Search
     </button>
+    </a>
+  </div>
+  <div class="col-md-6">
+     <p>Add a ride </p><a href="Login" id="link">
+    <button class="btn btn-block" id="button2" type="button">
+      New ride
+    </button>
+    </a>
   </div>
   </div>
 </form>
 </div>
+
 <div class="container text-center">
   <div class="row">
     <div class="col-md">
@@ -45,15 +34,14 @@
       <p class="text-start" >Each of new members is being checked using ID, created profiles to reviews, so You do not have to worry. Just reserve and enjoy Your ride.</p>
     </div>
     <div class="col-md">
-      <p style="color:#2e2c2f;" class="text-start fw-semibold">Book a ride right now!</p>
+      <p style="color:#2e2c2f;" class="text-start fw-semibold">Booking a ride</p>
       <p class="text-start">You can book a ride whenever You want and no matter where You are. Find ride You like the most and click RESERVE!</p>
     </div>
     <div class="col-md">
-      <p style="color:#2e2c2f;" class="text-start fw-semibold">Join our team and drive with us</p>
+      <p style="color:#2e2c2f;" class="text-start fw-semibold">Joining our team</p>
       <p class="text-start">You can join our team and drive others by Yourself. All You need to do is create a profile! P.S. Always drive safe. </p>
     </div>
- 
-  </div>
+   </div>
 </div>
 </template>
 <style>
@@ -69,8 +57,6 @@
   background-color: #fff;
   outline-color: #D7BCFD;
 }
-
 </style>
 <script>
-
 </script>
