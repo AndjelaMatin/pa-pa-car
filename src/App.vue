@@ -2,7 +2,7 @@
   <div id="app">
     <nav id="nav" class="navbar navbar-expand-lg navbar-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="Home">
+        <a class="navbar-brand" href="/">
           <img
             src="@/assets/logo.png"
             alt=""
@@ -23,21 +23,27 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarText">
-          <ul class="navbar-nav ms-auto mb-2 ">
-            <li class="nav-item" >
+          <ul class="navbar-nav ms-auto mb-2">
+            <li v-if="!user1" class="nav-item">
               <router-link to="/login" class="nav-link">Login</router-link>
             </li>
-            <li class="nav-item">
+            <li v-if="!user1" class="nav-item">
               <router-link to="/signup" class="nav-link">Sign Up</router-link>
             </li>
-             <li class="nav-item">
+            <li v-if="user1" class="nav-item">
+              <router-link to="/newride" class="nav-link">New ride</router-link>
+            </li>
+            <li v-if="user1" class="nav-item">
+              <router-link to="/profile" class="nav-link">Profile</router-link>
+            </li>
+            <li v-if="user1" class="nav-item">
               <a class="nav-link" href="#" @click.prevent="logout()">Logout</a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
@@ -49,7 +55,6 @@
   text-align: center;
   color: #5f5c69;
 }
-
 #nav {
   padding: 10px;
   background-color: #d7bcfd;
@@ -60,47 +65,59 @@
     }
   }
 }
-
 #button3 {
   background-color: #d7bcfd;
   outline-color: #d7bcfd;
 }
-.dropdown-menu {
-  --bs-dropdown-link-active-bg: #d7bcfd !important;
-}
 </style>
 <script>
-import store from '@/store';
-import { getAuth, onAuthStateChanged, signOut } from '@/firebase';
-import router from '@/router';
+import store from "@/store";
+import { getAuth, onAuthStateChanged, signOut } from "@/firebase";
+import router from "@/router";
 const auth = getAuth();
-onAuthStateChanged(auth, (user) => {
-  const currentRoute=router.currentRoute;
-  console.log("PROVJERA*********");
-        if (user) {
-          //const uid = user.uid;
-          console.log("***",user.email);
-          store.currentUser = user.email;
-        } else {
-          console.log("***No user");
-          store.currentUser = null;
-        }
-      });
 export default {
   name: "app",
-  data(){
-    return{
+  data() { 
+    return {
       store,
+      user1: null,
+      router,
     };
   },
+  created() {
+    onAuthStateChanged(auth, (user) => {
+      const currentRoute = this.router.currentRoute;
+      console.log("PROVJERA*********");
+      if (user) {
+        const uid = user.uid;
+        console.log("***", user.email);
+        this.user1 = user.email;
+        store.currentUser = user.email;
+        if(!currentRoute.meta.requiresAuth)
+        {
+          router.push({name:'Home'});
+        }
+      } else {
+        console.log("***No user");
+        this.user1 = null;
+        store.currentUser = null;
+        if(currentRoute.meta.requiresAuth)
+        {
+          router.push({name:'login'});
+        }
+      }
+    });
+  },
   methods: {
-    logout(){
-      signOut(auth).then(()=>{
-        //Sign-out successful.
-        this.$router.push({name:'login'});
-      }).catch((error)=>{
-        //An error happened.
-      });
+    logout() {
+      signOut(auth)
+        .then(() => {
+          //Sign-out successful.
+          this.$router.push({ name: "login" });
+        })
+        .catch((error) => {
+          //An error happened.
+        });
     },
   },
 };

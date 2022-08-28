@@ -59,6 +59,7 @@
 </style>
 <script>
 import { getAuth, signInWithEmailAndPassword } from '@/firebase';
+import store from '@/store';
 const auth = getAuth();
 export default {
   name: "login",
@@ -66,6 +67,7 @@ export default {
     return {
       email: "",
       password: "",
+      store,
     };
   },
   methods: {
@@ -74,7 +76,8 @@ export default {
         .then((userCredential) => {
           // Signed in.
           const user=userCredential.user;
-          this.$router.replace({name:'home'});
+          console.log('upisan: ',store.currentUser);
+         // this.$router.replace({name:'Home'});
           // ...
         })
         .catch((error) => {

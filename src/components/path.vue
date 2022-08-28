@@ -1,9 +1,8 @@
 <template>
  <div class="card">
-  <div class="card-header">
-    <p class="card-text" >{{info.from}}-{{info.to}}</p>
-  </div>
   <div class="card-body">
+    <p class="card-text" >{{info.from}}</p>
+    <p class="card-text" >{{info.to}}</p>
     <p class="card-date">{{info.date}}</p>
     <p class="card-text" >{{info.leaving}}</p>
     <p class="card-text">{{info.arriving}}</p>

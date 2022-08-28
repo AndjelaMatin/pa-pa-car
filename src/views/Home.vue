@@ -5,19 +5,46 @@
 <div id="forma1">
 <form>
   <div class="row g-1">
-  <div class="col-md-6">
-     <p>Pick the ride </p><a href="Rides" id="link">
-     <button class="btn btn-block" id="button2" type="button">
-      Search
-    </button>
-    </a>
-  </div>
-  <div class="col-md-6">
-     <p>Add a ride </p><a href="Login" id="link">
-    <button class="btn btn-block" id="button2" type="button">
-      New ride
-    </button>
-    </a>
+  <div id="forma1">
+    <form>
+      <div class="row g-1">
+        <div class="col-md-3">
+          <label class="form-label">Leaving from</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="From..."
+            v-model="from"
+          />
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">Going to</label>
+          <input type="text" class="form-control" placeholder="To..." />
+        </div>
+        <div class="col-md-2">
+          <label class="form-label">Number of passengers</label>
+          <select class="form-select">
+            <option selected>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+          </select>
+        </div>
+        <div class="col-md-2">
+          <label class="form-label">Date of leaving</label>
+          <input type="date" class="form-control" />
+        </div>
+        <div class="col-md-2">
+          <button class="btn btn-block" id="button2" type="button">
+            Search
+          </button>
+        </div>
+      </div>
+    </form>
   </div>
   </div>
 </form>
@@ -55,7 +82,7 @@
   margin-bottom: 15px;
   color:#5f5c69 ;
   background-color: #fff;
-  outline-color: #D7BCFD;
+  outline-color:#fff;
 }
 </style>
 <script>
