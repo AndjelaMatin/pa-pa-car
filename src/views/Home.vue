@@ -14,7 +14,6 @@
             type="text"
             class="form-control"
             placeholder="From..."
-            v-model="from"
           />
         </div>
         <div class="col-md-3">
@@ -62,7 +61,7 @@
     </div>
     <div class="col-md">
       <p style="color:#2e2c2f;" class="text-start fw-semibold">Booking a ride</p>
-      <p class="text-start">You can book a ride whenever You want and no matter where You are. Find ride You like the most and click RESERVE!</p>
+      <p class="text-start">You can book a ride whenever You want and no matter where You are. Find ride You like the most and contact driver!</p>
     </div>
     <div class="col-md">
       <p style="color:#2e2c2f;" class="text-start fw-semibold">Joining our team</p>

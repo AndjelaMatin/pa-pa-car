@@ -34,7 +34,7 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "rides" */ "../views/Rides.vue"),
     meta: {
-      requiresAuth: true,
+      requiresAuth: false,
     },
   },
   {

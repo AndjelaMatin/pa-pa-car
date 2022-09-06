@@ -4,11 +4,11 @@
     <div class="card-header">Information about new ride</div>
     <div class="card-body">
       <p class="card-text">Leaving from</p>
-      <input type="text" class="form-control" placeholder="From..." />
+      <input type="text" class="form-control" placeholder="From..." v-model="fromWhere" />
       <p class="card-text">Going to</p>
-      <input type="text" class="form-control" placeholder="To..." />
+      <input type="text" class="form-control" placeholder="To..." v-model="toWhere"/>
       <p class="card-text">Number of passengers</p>
-      <select class="form-select">
+      <select class="form-select" v-model="numberpass">
         <option selected>1</option>
         <option>2</option>
         <option>3</option>
@@ -18,9 +18,11 @@
         <option>7</option>
         <option>8</option>
       </select>
+      <p class="card-text">Price</p>
+      <input type="text" class="form-control" placeholder="Price..." v-model="price" />
       <p class="card-text">Date of leaving</p>
-      <input type="date" class="form-control" />
-      <button class="btn btn-block" id="button1" type="button">Add</button>
+      <input type="date" class="form-control" v-model="dateleaving"/>
+      <button class="btn btn-block" id="button1" type="button" @click="addNewRide">Add</button>
     </div>
   </div>
 </div>
@@ -37,4 +39,44 @@
   padding-top:25px ;
 }
 </style>
-<script></script>
+<script>
+import {db, doc, setDoc, collection } from '@/firebase'; 
+import store from '@/store';
+export default{
+  name:'NewRide',
+  data: function(){
+    return  {
+      store,
+      db,
+      fromWhere:"",
+      toWhere:"",
+      numberpass:"",
+      dateleaving:"",
+      numberpass:"",
+      price:"",
+    };   
+  },
+  methods:{
+    addNewRide(){
+      const newRide = doc(collection(db, "rides"));
+      setDoc(newRide,{
+        leaving:this.fromWhere,
+        arriving:this.toWhere,
+        pass:this.numberpass,
+        time:this.dateleaving,
+        price:this.price,
+        email:store.currentUser,
+    }).then((doc)=>{
+      console.log("Sporemnljeno",doc);
+      this.fromWhere="";
+      this.toWhere="";
+      this.numberpass="";
+      this.dateleaving="";
+      this.price="";
+    }).catch((er)=>{
+      console.error(er);
+    });
+    }
+  },
+}
+</script>
