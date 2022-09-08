@@ -3,37 +3,28 @@
     <div class="card1">
       <div class="card">
         <div class="card-body">
-          <p class="card-text">{{ card.email }}</p>
-          <p class="card-text">{{ card.username }}</p>
-          <p class="card-date">{{ card.phone }}</p>
-          <router-link
-            to="/changeprofile"
-            class="btn btn-block"
-            type="button"
-            id="button1"
-            >Change profile</router-link
-          >
-          <br />
+          <p class="card-text">{{ card.fromWhere }}</p>
+          <p class="card-text">{{ card.toWhere }}</p>
+          <p class="card-date">{{ card.numberpass }}</p>
+          <p class="card-text">{{ card.dateleaving }}</p>
+          <p class="card-text">{{ card.price }}</p>
           <button
             class="btn btn-block"
             type="button"
             id="button1"
-            @click="deleteAcc"
           >
-            Delete account
+            Delete ride
           </button>
         </div>
       </div>
     </div>
   </div>
 </template>
-
 <script>
 import store from "@/store";
-import {getAuth, db, doc, getDocs, collection, deleteDoc, deleteUser } from "@/firebase";
-const auth=getAuth();
+import { db, doc, getDocs, collection, deleteDoc } from "@/firebase";
 export default {
-  name: "profile",
+  name: "myrides",
   data: function () {
     return {
       store,
@@ -41,17 +32,19 @@ export default {
     };
   },
   methods: {
-    getProfile() {
+    getMyRides() {
       console.log("dohvat-------", store.currentUser);
-      getDocs(collection(db, "profile"))
+      getDocs(collection(db, "rides"))
         .then((querySnapshot) => {
           querySnapshot.forEach((doc) => {
             const dat = doc.data();
             if (dat.email == store.currentUser) {
               this.cards.push({
-                email: dat.email,
-                username: dat.username,
-                phone: dat.phone,
+                toWhere: dat.arriving,
+                fromWhere: dat.leaving,
+                numberpass: dat.pass,
+                dateleaving: dat.time,
+                price: dat.price,
               });
             }
           });
@@ -60,19 +53,12 @@ export default {
           console.log(err.massage);
         });
     },
-    deleteAcc() {
-      deleteDoc(doc(db, "profile", store.currentUser));
-      const user = auth.currentUser;
-      deleteUser(user).then(()=>{
-        // User deleted.
-      }).catch((error) => {
-        // An error ocurred
-        // ...
-      });
-    },
+    // deleteRide() {
+    //  deleteDoc(doc(db, "rides"));
+    //},
   },
   created: function () {
-    this.getProfile();
+    this.getMyRides();
   },
 };
 </script>

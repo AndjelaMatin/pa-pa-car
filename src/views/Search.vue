@@ -41,7 +41,7 @@
     </form>
   </div>
   <div v-for="card in cards" v-bind:key="card" >
-      <div>
+      <div  class="card1">
       <div class="card">
       <div class="card-body">
       <p class="card-text" >{{card.fromWhere}}</p>
@@ -64,12 +64,15 @@ export default {
     return {
       cards:[],
       store,
+      pas:"",
+      arri:"",
+      tim:"",
+      leav:"",
     };
   },
   methods:{
     getRides(){
       console.log('dohvat-------');
-
       getDocs(collection(db,'rides')).then(querySnapshot=>{
         querySnapshot.forEach((doc)=>{
           const dat=doc.data();
@@ -88,7 +91,6 @@ export default {
         console.log(err.massage);
       });
     },
-
   },
 };
 </script>
@@ -102,5 +104,9 @@ export default {
   margin-top: 15px;
   margin-bottom: 15px;
   padding: 10px;
+}
+.card1{
+  padding: 15px;
+  padding-top:25px ;
 }
 </style>

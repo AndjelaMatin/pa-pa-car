@@ -29,12 +29,21 @@ const routes = [
     },
   },
   {
-    path: "/rides",
-    name: "rides",
+    path: "/search",
+    name: "search",
     component: () =>
-      import(/* webpackChunkName: "rides" */ "../views/Rides.vue"),
+      import(/* webpackChunkName: "rides" */ "../views/Search.vue"),
     meta: {
       requiresAuth: false,
+    },
+  },
+  {
+    path: "/myrides",
+    name: "myrides",
+    component: () =>
+      import(/* webpackChunkName: "rides" */ "../views/MyRides.vue"),
+    meta: {
+      requiresAuth: true,
     },
   },
   {

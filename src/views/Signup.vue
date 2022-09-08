@@ -56,6 +56,7 @@
               class="btn btn-block"
               id="button1"
               @click="sign"
+             
               type="button"
             >
               Submit
@@ -88,7 +89,8 @@
 }
 </style>
 <script>
-import { getAuth, createUserWithEmailAndPassword } from "@/firebase";
+import store from "@/store";
+import { getAuth, createUserWithEmailAndPassword, db, doc, setDoc} from "@/firebase";
 const auth = getAuth();
 export default {
   name: "sign",
@@ -99,6 +101,7 @@ export default {
       phonenumber: "",
       password: "",
       repeatpassword: "",
+      store,
     };
   },
   methods: {
@@ -113,6 +116,17 @@ export default {
             const errorCode = error.code;
             const errorMessage = error.message;
           });
+        const newProfile = doc(db, "profile",this.email);
+        setDoc(newProfile,{
+          email:this.email,
+          username:this.username,
+          phone:this.phonenumber,
+          passw:this.password,
+        }).then((doc)=>{
+          console.log("Spremnljeno",doc);
+        }).catch((er)=>{
+          console.error(er);
+    });
       } else {
         this.password = "";
         this.repeatpassword = "";

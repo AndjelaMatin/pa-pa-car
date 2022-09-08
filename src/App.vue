@@ -25,7 +25,7 @@
         <div class="collapse navbar-collapse" id="navbarText">
           <ul class="navbar-nav ms-auto mb-2">
             <li class="nav-item">
-              <router-link to="/rides" class="nav-link">Rides</router-link>
+              <router-link to="/search" class="nav-link">Search</router-link>
             </li>
             <li v-if="!user1" class="nav-item">
               <router-link to="/login" class="nav-link">Login</router-link>
@@ -38,6 +38,9 @@
             </li>
             <li v-if="user1" class="nav-item">
               <router-link to="/profile" class="nav-link">Profile</router-link>
+            </li>
+            <li v-if="user1" class="nav-item">
+              <router-link to="/myrides" class="nav-link">My rides</router-link>
             </li>
             <li v-if="user1" class="nav-item">
               <a class="nav-link" href="#" @click.prevent="logout()">Logout</a>

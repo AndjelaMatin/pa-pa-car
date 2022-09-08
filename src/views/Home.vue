@@ -3,52 +3,9 @@
   <img src="@/assets/pocetna.gif" class="img-fluid">
 </div>
 <div id="forma1">
-<form>
-  <div class="row g-1">
-  <div id="forma1">
-    <form>
-      <div class="row g-1">
-        <div class="col-md-3">
-          <label class="form-label">Leaving from</label>
-          <input
-            type="text"
-            class="form-control"
-            placeholder="From..."
-          />
-        </div>
-        <div class="col-md-3">
-          <label class="form-label">Going to</label>
-          <input type="text" class="form-control" placeholder="To..." />
-        </div>
-        <div class="col-md-2">
-          <label class="form-label">Number of passengers</label>
-          <select class="form-select">
-            <option selected>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            <option>6</option>
-            <option>7</option>
-            <option>8</option>
-          </select>
-        </div>
-        <div class="col-md-2">
-          <label class="form-label">Date of leaving</label>
-          <input type="date" class="form-control" />
-        </div>
-        <div class="col-md-2">
-          <button class="btn btn-block" id="button2" type="button">
-            Search
-          </button>
-        </div>
-      </div>
-    </form>
-  </div>
-  </div>
-</form>
+  <h4>FIND RIDE JUST FOR YOU!</h4>
+  <router-link to="/search" class="btn btn-block" type="button" id="button2">SEARCH</router-link>
 </div>
-
 <div class="container text-center">
   <div class="row">
     <div class="col-md">
@@ -85,4 +42,5 @@
 }
 </style>
 <script>
+
 </script>

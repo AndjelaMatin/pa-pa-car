@@ -46,8 +46,6 @@ export default{
   name:'NewRide',
   data: function(){
     return  {
-      store,
-      db,
       fromWhere:"",
       toWhere:"",
       numberpass:"",
