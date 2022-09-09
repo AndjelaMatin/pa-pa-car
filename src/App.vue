@@ -50,6 +50,37 @@
       </div>
     </nav>
     <router-view />
+    <br />
+    <br />
+   <footer >
+      <div class="container">
+        <div class="row text-light text-center py-4 justify-content-center">
+          <div class="col-sm-10 col-md-8-col-lg-6">
+            <img
+              src="@/assets/logo.png"
+              width="250"
+              height="80"
+              alt=""
+              class="picture"
+            />
+            <h6>BEST CHOICE OF RIDES</h6>
+            <section class="py-3">
+    <div class="container">
+      <a href="https://www.facebook.com/"><img src="@/assets/facebook.png" width="30"
+              height="30"/></a>
+      <a href="https://www.twitter.com/"><img src="@/assets/twitter.png" width="30"
+              height="30"/></a>
+              <a href="https://www.instagram.com/"><img src="@/assets/instagram.png" width="30"
+              height="30"/></a>
+              <a href="https://www.youtube.com/"><img src="@/assets/youtube.png" width="30"
+              height="30"/></a>
+      <h6>Copyright 2022 &copy;</h6>
+    </div>
+  </section>
+          </div>
+        </div>
+      </div>
+    </footer>
   </div>
 </template>
 
@@ -75,6 +106,16 @@
   background-color: #d7bcfd;
   outline-color: #d7bcfd;
 }
+.picture {
+  padding: 4px;
+}
+footer {
+  text-align: center;
+  color: white;
+  background-color: #d7bcfd;
+  width: 100%;
+  position:absolute;
+}
 </style>
 <script>
 import store from "@/store";
@@ -83,7 +124,7 @@ import router from "@/router";
 const auth = getAuth();
 export default {
   name: "app",
-  data() { 
+  data() {
     return {
       store,
       user1: null,
@@ -99,17 +140,15 @@ export default {
         console.log("***", user.email);
         this.user1 = user.email;
         store.currentUser = user.email;
-        if(!currentRoute.meta.requiresAuth)
-        {
-          router.push({name:'Home'});
+        if (!currentRoute.meta.requiresAuth) {
+          router.push({ name: "Home" });
         }
       } else {
         console.log("***No user");
         this.user1 = null;
         store.currentUser = null;
-        if(currentRoute.meta.requiresAuth)
-        {
-          router.push({name:'login'});
+        if (currentRoute.meta.requiresAuth) {
+          router.push({ name: "login" });
         }
       }
     });

@@ -56,7 +56,6 @@
               class="btn btn-block"
               id="button1"
               @click="sign"
-             
               type="button"
             >
               Submit
@@ -90,7 +89,13 @@
 </style>
 <script>
 import store from "@/store";
-import { getAuth, createUserWithEmailAndPassword, db, doc, setDoc} from "@/firebase";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  db,
+  doc,
+  setDoc,
+} from "@/firebase";
 const auth = getAuth();
 export default {
   name: "sign",
@@ -106,31 +111,41 @@ export default {
   },
   methods: {
     sign() {
-      if (this.password == this.repeatpassword) {
-        createUserWithEmailAndPassword(auth, this.email, this.password)
-          .then((userCredential) => {
-            // Signd in
-            const user = userCredential.user;
-          })
-          .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-          });
-        const newProfile = doc(db, "profile",this.email);
-        setDoc(newProfile,{
-          email:this.email,
-          username:this.username,
-          phone:this.phonenumber,
-          passw:this.password,
-        }).then((doc)=>{
-          console.log("Spremnljeno",doc);
-        }).catch((er)=>{
-          console.error(er);
-    });
+      if (this.email.includes("@")) {
+        if (this.password.length > 5) {
+          if (this.password == this.repeatpassword) {
+            createUserWithEmailAndPassword(auth, this.email, this.password)
+              .then((userCredential) => {
+                // Signd in
+                const user = userCredential.user;
+              })
+              .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+              });
+            const newProfile = doc(db, "profile", this.email);
+            setDoc(newProfile, {
+              email: this.email,
+              username: this.username,
+              phone: this.phonenumber,
+              passw: this.password,
+            })
+              .then((doc) => {
+                console.log("Spremnljeno", doc);
+              })
+              .catch((er) => {
+                console.error(er);
+              });
+          } else {
+            this.password = "";
+            this.repeatpassword = "";
+            alert("Different password in fields!");
+          }
+        } else {
+          alert("Password is too short (less than 6 characters)!");
+        }
       } else {
-        this.password = "";
-        this.repeatpassword = "";
-        alert("Different password in fields!");
+        alert("Email address is incorect!");
       }
     },
   },

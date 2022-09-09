@@ -38,7 +38,7 @@
 </template>
 <script>
 import store from "@/store";
-import { db, doc, collection, updateDoc,getDocs } from "@/firebase";
+import { db, doc, updateDoc} from "@/firebase";
 export default {
   name: "profile",
   data: function () {
@@ -59,6 +59,7 @@ export default {
         "phone":this.phonenumber,
       }).then((doc)=>{
           console.log("Spremnljeno",store.currentUser);
+
         }).catch((er)=>{
           console.error(er);
     });

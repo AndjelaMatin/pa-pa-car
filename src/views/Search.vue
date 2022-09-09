@@ -2,6 +2,9 @@
   <div id="forma1">
     <form>
       <div class="row g-1">
+        <div class="div3">
+        <h3>FIND RIDE JUST FOR YOU!</h3>
+        </div>
         <div class="col-md-3">
           <label class="form-label">Leaving from</label>
           <input
@@ -33,7 +36,7 @@
           <input type="date" class="form-control" v-model="tim">
         </div>
         <div class="col-md-2">
-          <button class="btn btn-block" id="button1" type="button" @click="getRides">
+          <button class="btn btn-block" id="button2" type="button" @click="getRides">
             Search
           </button>
         </div>
@@ -41,15 +44,18 @@
     </form>
   </div>
   <div v-for="card in cards" v-bind:key="card" >
-      <div  class="card1">
-      <div class="card">
+      <div class="card1">
+      <div class="card text-right">
       <div class="card-body">
-      <p class="card-text" >{{card.fromWhere}}</p>
-      <p class="card-text" >{{card.toWhere}}</p>
-      <p class="card-date">{{card.numberpass}}</p>
-      <p class="card-text" >{{card.dateleaving}}</p>
-      <p class="card-text">{{card.price}}</p>
-      <a href="#" class="btn btn-block" type="button" id="button1">Contact driver</a>
+      <p class="card-text">LEAVING FROM:</p>
+      <p class="card-text">{{card.fromWhere}}</p>
+      <p class="card-text">GOING TO:</p>
+      <p class="card-text">{{card.toWhere}}</p>
+      <p class="card-text">NUMBER OF SEATS: {{card.numberpass}}</p>
+      <p class="card-date">DATE: {{card.dateleaving}}</p>
+      <p class="card-date">TIME OF LEAVING: {{card.timeofleaving}}</p>
+      <p class="card-text ">PRICE: {{card.price}}</p>
+      <p class="card-text">CONTACT: {{card.email}}</p>
       </div>
     </div>
   </div>
@@ -68,10 +74,12 @@ export default {
       arri:"",
       tim:"",
       leav:"",
+      email:"",
     };
   },
   methods:{
     getRides(){
+      if(this.arri!="" && this.leav!="" && this.tim!="" && this.pas!=""){
       console.log('dohvat-------');
       getDocs(collection(db,'rides')).then(querySnapshot=>{
         querySnapshot.forEach((doc)=>{
@@ -82,6 +90,7 @@ export default {
             fromWhere:dat.leaving,
             numberpass:dat.pass,
             dateleaving:dat.time,
+            timeofleaving:dat.hour,
             price:dat.price,
             email:dat.email,
           });
@@ -90,23 +99,39 @@ export default {
       }).catch((err)=>{
         console.log(err.massage);
       });
+    }else{
+      alert("Some fields are empty!");
+    }
     },
   },
 };
 </script>
 <style>
-#button1 {
-  color: #5f5c69;
-  background-color: #d7bcfd;
-  outline-color: #d7bcfd;
+#button2{
+  margin-top: 15px;
+  margin-bottom: 15px;
+  color:#5f5c69 ;
+  background-color: #fff;
+  outline-color:#fff;
 }
 #forma1 {
   margin-top: 15px;
   margin-bottom: 15px;
   padding: 10px;
+  border-radius: 10px;
 }
 .card1{
   padding: 15px;
-  padding-top:25px ;
+  padding-top:25px;
+}
+.div3{
+  padding:15px;
+  background-color: #fff;
+  border-radius: 10px;
+}
+#button1 {
+  color: #5f5c69;
+  background-color: #d7bcfd;
+  outline-color: #d7bcfd;
 }
 </style>

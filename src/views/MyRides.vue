@@ -3,18 +3,12 @@
     <div class="card1">
       <div class="card">
         <div class="card-body">
-          <p class="card-text">{{ card.fromWhere }}</p>
-          <p class="card-text">{{ card.toWhere }}</p>
-          <p class="card-date">{{ card.numberpass }}</p>
-          <p class="card-text">{{ card.dateleaving }}</p>
-          <p class="card-text">{{ card.price }}</p>
-          <button
-            class="btn btn-block"
-            type="button"
-            id="button1"
-          >
-            Delete ride
-          </button>
+          <h5 class="card-text">Leaving from: {{card.fromWhere }}</h5>
+          <h5 class="card-text">Going to: {{card.toWhere }}</h5>
+          <p class="card-date">Number of seats: {{card.numberpass }}</p>
+          <p class="card-text">Date: {{card.dateleaving }}</p>
+          <p class="card-text">Time of leaving: {{card.timeofleaving }}</p>
+          <p class="card-text">Price: {{card.price }}</p>
         </div>
       </div>
     </div>
@@ -44,8 +38,10 @@ export default {
                 fromWhere: dat.leaving,
                 numberpass: dat.pass,
                 dateleaving: dat.time,
+                timeofleaving:dat.hour,
                 price: dat.price,
               });
+
             }
           });
         })
@@ -53,9 +49,6 @@ export default {
           console.log(err.massage);
         });
     },
-    // deleteRide() {
-    //  deleteDoc(doc(db, "rides"));
-    //},
   },
   created: function () {
     this.getMyRides();
@@ -71,5 +64,6 @@ export default {
 .card1 {
   padding: 15px;
   padding-top: 25px;
+  
 }
 </style>

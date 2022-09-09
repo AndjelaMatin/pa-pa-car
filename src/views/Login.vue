@@ -26,7 +26,12 @@
                 v-model="password"
               />
             </div>
-            <button class="btn btn-block" id="button1"  @click="login" type="button">
+            <button
+              class="btn btn-block"
+              id="button1"
+              @click="login"
+              type="button"
+            >
               Submit
             </button>
             <div class="form-footer">
@@ -50,16 +55,16 @@
 }
 #button1 {
   color: #5f5c69;
-  background-color: #D7BCFD;
-  outline-color: #D7BCFD;
+  background-color: #d7bcfd;
+  outline-color: #d7bcfd;
 }
 #link {
   color: #5f5c69;
 }
 </style>
 <script>
-import { getAuth, signInWithEmailAndPassword } from '@/firebase';
-import store from '@/store';
+import { getAuth, signInWithEmailAndPassword } from "@/firebase";
+import store from "@/store";
 const auth = getAuth();
 export default {
   name: "login",
@@ -72,18 +77,22 @@ export default {
   },
   methods: {
     login() {
-      signInWithEmailAndPassword(auth, this.email, this.password)
-        .then((userCredential) => {
-          // Signed in.
-          const user=userCredential.user;
-          console.log('upisan: ',store.currentUser);
-         // this.$router.replace({name:'Home'});
-          // ...
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-        });
+      if (this.email.includes("@")) {
+        signInWithEmailAndPassword(auth, this.email, this.password)
+          .then((userCredential) => {
+            // Signed in.
+            const user = userCredential.user;
+            console.log("upisan: ", store.currentUser);
+            // this.$router.replace({name:'Home'});
+            // ...
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+          });
+      } else {
+        alert("Email address is incorect!");
+      }
     },
   },
 };

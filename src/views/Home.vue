@@ -14,7 +14,7 @@
     </div>
     <div class="col-md">
       <p style="color:#2e2c2f;" class="text-start fw-semibold">Trustworthy drivers</p>
-      <p class="text-start" >Each of new members is being checked using ID, created profiles to reviews, so You do not have to worry. Just reserve and enjoy Your ride.</p>
+      <p class="text-start" >Each of new members is being checked using ID and created profiles, so You do not have to worry. Just reserve and enjoy Your ride.</p>
     </div>
     <div class="col-md">
       <p style="color:#2e2c2f;" class="text-start fw-semibold">Booking a ride</p>
