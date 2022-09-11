@@ -54,7 +54,7 @@
     <br />
    <footer >
       <div class="container">
-        <div class="row text-light text-center py-4 justify-content-center">
+        <div class="row text-light py-3 justify-content-center">
           <div class="col-sm-10 col-md-8-col-lg-6">
             <img
               src="@/assets/logo.png"
@@ -64,7 +64,7 @@
               class="picture"
             />
             <h6>BEST CHOICE OF RIDES</h6>
-            <section class="py-3">
+            <section class="py-2">
     <div class="container">
       <a href="https://www.facebook.com/"><img src="@/assets/facebook.png" width="30"
               height="30"/></a>
@@ -81,7 +81,7 @@
         </div>
       </div>
     </footer>
-  </div>
+</div>
 </template>
 
 <style lang="scss">
@@ -110,11 +110,13 @@
   padding: 4px;
 }
 footer {
-  text-align: center;
   color: white;
   background-color: #d7bcfd;
+  bottom: 0;
   width: 100%;
-  position:absolute;
+  height: 235px;
+  position:static;
+
 }
 </style>
 <script>
@@ -134,17 +136,17 @@ export default {
   created() {
     onAuthStateChanged(auth, (user) => {
       const currentRoute = this.router.currentRoute;
-      console.log("PROVJERA*********");
+      console.log("PROVJERA");
       if (user) {
         const uid = user.uid;
-        console.log("***", user.email);
+        console.log( user.email);
         this.user1 = user.email;
         store.currentUser = user.email;
         if (!currentRoute.meta.requiresAuth) {
           router.push({ name: "Home" });
         }
       } else {
-        console.log("***No user");
+        console.log("No user");
         this.user1 = null;
         store.currentUser = null;
         if (currentRoute.meta.requiresAuth) {

@@ -3,21 +3,23 @@
     <div class="card">
       <div class="card-header">Information about new ride</div>
       <div class="card-body">
-        <p class="card-text">Leaving from</p>
+        <label class="card-text">Leaving from</label>
         <input
           type="text"
           class="form-control"
           placeholder="From..."
           v-model="fromWhere"
         />
-        <p class="card-text">Going to</p>
+        <br/>
+        <label class="card-text">Going to</label>
         <input
           type="text"
           class="form-control"
           placeholder="To..."
           v-model="toWhere"
         />
-        <p class="card-text">Number of passengers</p>
+        <br/>
+        <label class="card-text">Number of passengers</label>
         <select class="form-select" v-model="numberpass">
           <option selected>1</option>
           <option>2</option>
@@ -27,18 +29,20 @@
           <option>6</option>
           <option>7</option>
           <option>8</option>
-        </select>
-        <p class="card-text">Price</p>
+        </select><br/>
+        <label class="card-text">Price</label>
         <input
           type="text"
           class="form-control"
           placeholder="Price..."
           v-model="price"
-        />
-        <p class="card-text">Date of leaving</p>
+        /><br/>
+        <label class="card-text">Date of leaving</label>
         <input type="date" class="form-control" v-model="dateleaving" />
-        <p class="card-text">Time of leaving</p>
+        <br/>
+        <label class="card-text">Time of leaving</label>
         <input type="time" class="form-control" v-model="timeofleaving" />
+        <br/>
         <button
           class="btn btn-block"
           id="button1"
@@ -100,7 +104,7 @@ export default {
           email: store.currentUser,
         })
           .then((doc) => {
-            console.log("Sporemnljeno", doc);
+            console.log("Sporemljeno ", doc);
             this.fromWhere = "";
             this.toWhere = "";
             this.numberpass = "";

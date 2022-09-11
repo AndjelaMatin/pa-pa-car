@@ -1,10 +1,12 @@
 <template>
   <div id="forma1">
+    <div class="div3">
+      <h2>FIND RIDE JUST FOR YOU!</h2>
+    </div>
+  </div>
+  <div id="forma1">
     <form>
       <div class="row g-1">
-        <div class="div3">
-        <h3>FIND RIDE JUST FOR YOU!</h3>
-        </div>
         <div class="col-md-3">
           <label class="form-label">Leaving from</label>
           <input
@@ -16,7 +18,12 @@
         </div>
         <div class="col-md-3">
           <label class="form-label">Going to</label>
-          <input type="text" class="form-control" placeholder="To..." v-model="arri"/>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="To..."
+            v-model="arri"
+          />
         </div>
         <div class="col-md-2">
           <label class="form-label">Number of passengers</label>
@@ -33,99 +40,137 @@
         </div>
         <div class="col-md-2">
           <label class="form-label">Date of leaving</label>
-          <input type="date" class="form-control" v-model="tim">
+          <input type="date" class="form-control" v-model="tim" />
         </div>
         <div class="col-md-2">
-          <button class="btn btn-block" id="button2" type="button" @click="getRides">
+          <button
+            class="btn btn-block"
+            id="button2"
+            type="button"
+            @click="getRides"
+          >
             Search
           </button>
+          <br />
+          <br />
         </div>
       </div>
     </form>
   </div>
-  <div v-for="card in cards" v-bind:key="card" >
+  <div>
+    <div v-for="card in cards" v-bind:key="card">
       <div class="card1">
-      <div class="card text-right">
-      <div class="card-body">
-      <p class="card-text">LEAVING FROM:</p>
-      <p class="card-text">{{card.fromWhere}}</p>
-      <p class="card-text">GOING TO:</p>
-      <p class="card-text">{{card.toWhere}}</p>
-      <p class="card-text">NUMBER OF SEATS: {{card.numberpass}}</p>
-      <p class="card-date">DATE: {{card.dateleaving}}</p>
-      <p class="card-date">TIME OF LEAVING: {{card.timeofleaving}}</p>
-      <p class="card-text ">PRICE: {{card.price}}</p>
-      <p class="card-text">CONTACT: {{card.email}}</p>
+        <div class="card text-right">
+          <div class="card-body">
+            <label class="card-text">LEAVING FROM:</label>
+            <p class="card-text">{{ card.fromWhere }}</p>
+            <label class="card-text">GOING TO:</label>
+            <p class="card-text">{{ card.toWhere }}</p>
+            <p class="card-text">NUMBER OF SEATS: {{ card.numberpass }}</p>
+            <p class="card-date">DATE: {{ card.dateleaving }}</p>
+            <p class="card-date">TIME OF LEAVING: {{ card.timeofleaving }}</p>
+            <p class="card-text">PRICE: {{ card.price }}</p>
+            <p class="card-text">CONTACT: {{ card.email }}</p>
+          </div>
+        </div>
       </div>
     </div>
+    <div v-if="this.provjera">
+      <h2>provera</h2>
+    </div>
   </div>
-</div>
 </template>
 <script>
 import store from "@/store";
-import {db, doc, getDocs, collection } from "@/firebase";
+import { db, doc, getDocs, collection } from "@/firebase";
 export default {
   name: "rides",
   data: function () {
     return {
-      cards:[],
+      cards: [],
       store,
-      pas:"",
-      arri:"",
-      tim:"",
-      leav:"",
-      email:"",
+      pas: "",
+      arri: "",
+      tim: "",
+      leav: "",
+      email: "",
+      provjera: false,
     };
   },
-  methods:{
-    getRides(){
-      if(this.arri!="" && this.leav!="" && this.tim!="" && this.pas!=""){
-      console.log('dohvat-------');
-      getDocs(collection(db,'rides')).then(querySnapshot=>{
-        querySnapshot.forEach((doc)=>{
-          const dat=doc.data();
-          if(dat.arriving==this.arri && dat.leaving==this.leav && dat.time==this.tim && dat.pass>=this.pas){
-            this.cards.push({
-            toWhere:dat.arriving,
-            fromWhere:dat.leaving,
-            numberpass:dat.pass,
-            dateleaving:dat.time,
-            timeofleaving:dat.hour,
-            price:dat.price,
-            email:dat.email,
+  methods: {
+    getRides() {
+      this.provjera = false;
+      this.cards = [];
+      if (
+        this.arri != "" &&
+        this.leav != "" &&
+        this.tim != "" &&
+        this.pas != ""
+      ) {
+        console.log("Dohvat");
+        getDocs(collection(db, "rides"))
+          .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+              const dat = doc.data();
+              if (
+                dat.arriving == this.arri &&
+                dat.leaving == this.leav &&
+                dat.time == this.tim &&
+                dat.pass >= this.pas
+              ) {
+                this.cards.push({
+                  toWhere: dat.arriving,
+                  fromWhere: dat.leaving,
+                  numberpass: dat.pass,
+                  dateleaving: dat.time,
+                  timeofleaving: dat.hour,
+                  price: dat.price,
+                  email: dat.email,
+                });
+              } else if (
+                dat.arriving != this.arri ||
+                dat.leaving != this.leav ||
+                dat.time != this.tim ||
+                dat.pass < this.pas
+              ) {
+              }
+            });
+            console.log(this.cards);
+            if (Array.isArray(this.cards) && !this.cards.length) {
+              this.provjera = true;
+            }
+          })
+          .catch((err) => {
+            console.log(err.massage);
           });
-          }
-        });
-      }).catch((err)=>{
-        console.log(err.massage);
-      });
-    }else{
-      alert("Some fields are empty!");
-    }
+      } else {
+        alert("Some fields are empty!");
+      }
     },
   },
 };
 </script>
 <style>
-#button2{
+#button2 {
   margin-top: 15px;
   margin-bottom: 15px;
-  color:#5f5c69 ;
+  color: #5f5c69;
   background-color: #fff;
-  outline-color:#fff;
+  outline-color: #fff;
 }
 #forma1 {
-  margin-top: 15px;
-  margin-bottom: 15px;
-  padding: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
   border-radius: 10px;
 }
-.card1{
+.card1 {
   padding: 15px;
-  padding-top:25px;
+  padding-top: 25px;
 }
-.div3{
-  padding:15px;
+.div3 {
+  padding: 20px;
+  margin: 13px;
   background-color: #fff;
   border-radius: 10px;
 }

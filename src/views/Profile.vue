@@ -56,7 +56,7 @@ export default {
   },
   methods: {
     getProfile() {
-      console.log("dohvat-------", store.currentUser);
+      console.log("Dohvat ", store.currentUser);
       getDocs(collection(db, "profile"))
         .then((querySnapshot) => {
           querySnapshot.forEach((doc) => {

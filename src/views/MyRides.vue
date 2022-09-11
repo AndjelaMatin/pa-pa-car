@@ -3,12 +3,13 @@
     <div class="card1">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-text">Leaving from: {{card.fromWhere }}</h5>
-          <h5 class="card-text">Going to: {{card.toWhere }}</h5>
-          <p class="card-date">Number of seats: {{card.numberpass }}</p>
-          <p class="card-text">Date: {{card.dateleaving }}</p>
-          <p class="card-text">Time of leaving: {{card.timeofleaving }}</p>
-          <p class="card-text">Price: {{card.price }}</p>
+          <h5 class="card-text">Leaving from: {{ card.fromWhere }}</h5>
+          <h5 class="card-text">Going to: {{ card.toWhere }}</h5>
+          <br />
+          <p class="card-date">Number of seats: {{ card.numberpass }}</p>
+          <p class="card-text">Date: {{ card.dateleaving }}</p>
+          <p class="card-text">Time of leaving: {{ card.timeofleaving }}</p>
+          <p class="card-text">Price: {{ card.price }}</p>
         </div>
       </div>
     </div>
@@ -16,7 +17,7 @@
 </template>
 <script>
 import store from "@/store";
-import { db, doc, getDocs, collection, deleteDoc } from "@/firebase";
+import { db, getDocs, collection } from "@/firebase";
 export default {
   name: "myrides",
   data: function () {
@@ -27,7 +28,7 @@ export default {
   },
   methods: {
     getMyRides() {
-      console.log("dohvat-------", store.currentUser);
+      console.log("Dohvat ", store.currentUser);
       getDocs(collection(db, "rides"))
         .then((querySnapshot) => {
           querySnapshot.forEach((doc) => {
@@ -38,12 +39,15 @@ export default {
                 fromWhere: dat.leaving,
                 numberpass: dat.pass,
                 dateleaving: dat.time,
-                timeofleaving:dat.hour,
+                timeofleaving: dat.hour,
                 price: dat.price,
               });
-
             }
           });
+          this.cards.sort(function (a, b) {
+            return new Date(a.dateleaving) - new Date(b.dateleaving);
+          });
+          console.log(this.cards);
         })
         .catch((err) => {
           console.log(err.massage);
@@ -64,6 +68,5 @@ export default {
 .card1 {
   padding: 15px;
   padding-top: 25px;
-  
 }
 </style>

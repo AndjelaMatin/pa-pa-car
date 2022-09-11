@@ -118,23 +118,22 @@ export default {
               .then((userCredential) => {
                 // Signd in
                 const user = userCredential.user;
+                const newProfile = doc(db, "profile", this.email);
+                setDoc(newProfile, {
+                  email: this.email,
+                  username: this.username,
+                  phone: this.phonenumber,
+                })
+                  .then((doc) => {
+                    console.log("Spremljeno", doc);
+                  })
+                  .catch((er) => {
+                    console.error(er);
+                  });
               })
               .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
-              });
-            const newProfile = doc(db, "profile", this.email);
-            setDoc(newProfile, {
-              email: this.email,
-              username: this.username,
-              phone: this.phonenumber,
-              passw: this.password,
-            })
-              .then((doc) => {
-                console.log("Spremnljeno", doc);
-              })
-              .catch((er) => {
-                console.error(er);
               });
           } else {
             this.password = "";

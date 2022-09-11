@@ -82,7 +82,7 @@ export default {
           .then((userCredential) => {
             // Signed in.
             const user = userCredential.user;
-            console.log("upisan: ", store.currentUser);
+            console.log("Upisan: ", store.currentUser);
             // this.$router.replace({name:'Home'});
             // ...
           })
