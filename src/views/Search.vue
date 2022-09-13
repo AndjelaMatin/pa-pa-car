@@ -6,7 +6,7 @@
   </div>
   <div id="forma1">
     <form>
-      <div class="row g-1">
+      <div class="row g-2">
         <div class="col-md-3">
           <label class="form-label">Leaving from</label>
           <input
@@ -75,8 +75,8 @@
         </div>
       </div>
     </div>
-    <div v-if="this.provjera">
-      <h2>provera</h2>
+    <div v-if="this.provjera" class="div4">
+      <h5>RIDE WITH THIS DATA STILL DOES NOT EXIST</h5>
     </div>
   </div>
 </template>
@@ -159,9 +159,9 @@ export default {
   outline-color: #fff;
 }
 #forma1 {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  padding: 20px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding: 30px;
   border-radius: 10px;
 }
 .card1 {
@@ -169,14 +169,22 @@ export default {
   padding-top: 25px;
 }
 .div3 {
-  padding: 20px;
-  margin: 13px;
+  padding: 30px;
+  margin: 15px;
   background-color: #fff;
+  text-shadow: 2px 2px #d7bcfd;
   border-radius: 10px;
 }
 #button1 {
   color: #5f5c69;
   background-color: #d7bcfd;
   outline-color: #d7bcfd;
+}
+.div4{
+  padding: 10px;
+  margin: 10px;
+  background-color:#ebe8ec;
+  border-radius: 10px;
+  text-shadow: 2px 2px #d7bcfd;
 }
 </style>

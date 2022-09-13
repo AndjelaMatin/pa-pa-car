@@ -3,7 +3,7 @@
   <img src="@/assets/pocetna.gif" class="img-fluid">
 </div>
 <div id="forma1">
-  <h4>FIND RIDE JUST FOR YOU!</h4>
+  <p class="div5">FIND RIDE JUST FOR YOU!</p>
   <router-link to="/search" class="btn btn-block" type="button" id="button2">SEARCH</router-link>
 </div>
 <div class="container text">
@@ -44,6 +44,9 @@
   background-color: #fff;
   outline-color:#fff;
 }
-
+.div5{
+  text-shadow: 2px 2px #fff;
+  font-size: 30px;
+}
 </style>
 
