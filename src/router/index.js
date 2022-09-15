@@ -68,7 +68,9 @@ const routes = [
     path: "/changeprofile",
     name: "changeprofile",
     component: () =>
-      import(/* webpackChunkName: "changeprofile" */ "../views/ChangeProfile.vue"),
+      import(
+        /* webpackChunkName: "changeprofile" */ "../views/ChangeProfile.vue"
+      ),
     meta: {
       requiresAuth: true,
     },

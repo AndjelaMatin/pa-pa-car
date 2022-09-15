@@ -132,7 +132,7 @@ export default {
   margin-top: 30px;
   font-size: 22px;
   font-weight: bold;
-  color:#fff;
+  color: #fff;
 }
 .card3 .card3-body .mail {
   font-size: 14px;
@@ -147,7 +147,7 @@ export default {
 .card3 .card3-body .phone {
   margin-top: 10px;
   font-size: 14px;
-  color:#fff;
+  color: #fff;
 }
 .card3 .card3-footer {
   background-color: #d7bcfd;

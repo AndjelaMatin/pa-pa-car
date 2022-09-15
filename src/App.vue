@@ -52,7 +52,7 @@
     <router-view />
     <br />
     <br />
-   <footer >
+    <footer>
       <div class="container">
         <div class="row text-light py-3 justify-content-center">
           <div class="col-sm-10 col-md-8-col-lg-6">
@@ -65,23 +65,27 @@
             />
             <h6>BEST CHOICE OF RIDES</h6>
             <section class="py-2">
-    <div class="container">
-      <a href="https://www.facebook.com/"><img src="@/assets/facebook.png" width="30"
-              height="30"/></a>
-      <a href="https://www.twitter.com/"><img src="@/assets/twitter.png" width="30"
-              height="30"/></a>
-              <a href="https://www.instagram.com/"><img src="@/assets/instagram.png" width="30"
-              height="30"/></a>
-              <a href="https://www.youtube.com/"><img src="@/assets/youtube.png" width="30"
-              height="30"/></a>
-      <h6>Copyright 2022 &copy;</h6>
-    </div>
-  </section>
+              <div class="container">
+                <a href="https://www.facebook.com/"
+                  ><img src="@/assets/facebook.png" width="30" height="30"
+                /></a>
+                <a href="https://www.twitter.com/"
+                  ><img src="@/assets/twitter.png" width="30" height="30"
+                /></a>
+                <a href="https://www.instagram.com/"
+                  ><img src="@/assets/instagram.png" width="30" height="30"
+                /></a>
+                <a href="https://www.youtube.com/"
+                  ><img src="@/assets/youtube.png" width="30" height="30"
+                /></a>
+                <h6>Copyright 2022 &copy;</h6>
+              </div>
+            </section>
           </div>
         </div>
       </div>
     </footer>
-</div>
+  </div>
 </template>
 
 <style lang="scss">
@@ -115,8 +119,7 @@ footer {
   bottom: 0;
   width: 100%;
   height: 235px;
-  position:static;
-
+  position: static;
 }
 </style>
 <script>
@@ -139,7 +142,7 @@ export default {
       console.log("PROVJERA");
       if (user) {
         const uid = user.uid;
-        console.log( user.email);
+        console.log(user.email);
         this.user1 = user.email;
         store.currentUser = user.email;
         if (!currentRoute.meta.requiresAuth) {

@@ -62,7 +62,8 @@
             </button>
             <div class="form-footer">
               <p>
-                Already have an account? <a href="login" id="link">Log In</a>
+                Already have an account?
+                <router-link to="/login" id="link">Log in</router-link>
               </p>
             </div>
           </form>

@@ -5,7 +5,7 @@
         <section class="col-12 col-sm-6 col-md-4">
           <form class="form-container">
             <div class="form-group">
-              <br/>
+              <br />
               <label for="text">Name and Surname</label>
               <input
                 type="text"
@@ -15,7 +15,7 @@
               />
             </div>
             <div class="form-group">
-              <br/>
+              <br />
               <label for="number">Phone number</label>
               <input
                 type="phonenumber"
@@ -24,7 +24,7 @@
                 v-model="phonenumber"
               />
             </div>
-            <br/>
+            <br />
             <button
               class="btn btn-block"
               id="button1"
@@ -33,8 +33,8 @@
             >
               Save changes
             </button>
-            <br/>
-            <br/>
+            <br />
+            <br />
           </form>
         </section>
       </section>

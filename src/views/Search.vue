@@ -180,10 +180,10 @@ export default {
   background-color: #d7bcfd;
   outline-color: #d7bcfd;
 }
-.div4{
+.div4 {
   padding: 10px;
   margin: 10px;
-  background-color:#ebe8ec;
+  background-color: #ebe8ec;
   border-radius: 10px;
   text-shadow: 2px 2px #d7bcfd;
 }
