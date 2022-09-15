@@ -36,7 +36,7 @@
             </button>
             <div class="form-footer">
               <p>
-                Don't have an account? <a href="Signup" id="link">Sign Up</a>
+                Don't have an account? <a href="signup" id="link">Sign Up</a>
               </p>
             </div>
           </form>

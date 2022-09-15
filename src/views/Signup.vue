@@ -62,7 +62,7 @@
             </button>
             <div class="form-footer">
               <p>
-                Already have an account? <a href="Login" id="link">Log In</a>
+                Already have an account? <a href="login" id="link">Log In</a>
               </p>
             </div>
           </form>
