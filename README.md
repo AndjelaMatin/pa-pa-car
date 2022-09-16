@@ -1,6 +1,6 @@
 # Pa-pa Car
 
-Aplikacija je namjenjana svim punoljetnim osobama, služi za prijavu i rezerviranje vožnji između lokacija (različitih mjesta). Korisnici imaju mogućnost registrirati se i nakon toga unositi podatke o nadolazećim vožnjama (točno mjesto polaska i dolaska, datum i vrijeme polaska te broj slobodnih sjedala u automobilu), oni koji nisu registrirani imaju mogućnost vidjeti koje su vožnje zakazane, ali ne i dodati nove. Kod registriranih korisnika vidljivi su neki osobni podaci. Prilikom pretraživanja vožnje odabire se mjesto polaska i dolaska, datum polaska kao i broj mjesta koji je potreban. 
+Aplikacija je namijenjana svim punoljetnim osobama, služi za prijavu vožnji između lokacija (različitih mjesta). Korisnici imaju mogućnost registrirati se i nakon toga unositi podatke o nadolazećim vožnjama (točno mjesto polaska i dolaska, datum i vrijeme polaska te broj slobodnih sjedala u automobilu i cijenu vožnje po osobi), oni koji nisu registrirani imaju mogućnost vidjeti koje su vožnje zakazane, ali ne i dodati nove. Kod registriranih korisnika vidljivi su osobni podaci. Prilikom pretraživanja vožnje odabire se mjesto polaska i dolaska, datum polaska kao i broj mjesta koji je potreban. 
 
 ### **Autor**
 
